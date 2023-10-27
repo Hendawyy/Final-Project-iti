@@ -56,7 +56,7 @@ resource "google_container_node_pool" "general" {
 
   node_config {
     preemptible     = true
-    machine_type    = "e2-small"
+    machine_type    = "e2-medium"
     disk_size_gb    = 25
     image_type      = "ubuntu_containerd"
     service_account = var.K8S_email

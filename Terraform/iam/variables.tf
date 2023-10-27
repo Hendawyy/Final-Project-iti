@@ -1,6 +1,6 @@
 variable "project_id" {
   type        = string
-  description = "iti-final-hendawy"
+  description = "final-project-iti-hendawyy"
 }
 
 variable "region" {
@@ -15,7 +15,7 @@ variable "zone" {
 
 variable "sa-key" {
   type        = string
-  description = "secrets/iti-final-hendawy-647b192c2df1.json"
+  description = "../Secrets/final-project-iti-hendawyy-85436efc3b09.json"
 }
 
 variable "region2" {

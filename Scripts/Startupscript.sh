@@ -44,6 +44,9 @@ wget --header="Metadata-Flavor: Google" -O svacckey.json http://metadata.google.
 # Step 3: Decrypt the key to JSON format
 cat svacckey.json | base64 -d > svacckeyz.json
 
+# Set to Desired Project
+gcloud config set project final-project-iti-hendawyy
+
 # Step 4: Activate the service account with the key
 gcloud auth activate-service-account --key-file=svacckeyz.json
 
@@ -54,7 +57,7 @@ gcloud auth configure-docker us-east1-docker.pkg.dev
 cat svacckey.json | docker login -u _json_key_base64 --password-stdin https://us-east1-docker.pkg.dev
 
 # Step 7: Connect to the cluster
-gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project iti-final-hendawy --internal-ip
+gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
 
 # Step 8: Enable master global access
 gcloud container clusters update gcp-k8s --zone europe-west1-b --enable-master-global-access
