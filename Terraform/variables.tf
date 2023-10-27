@@ -15,7 +15,7 @@ variable "zone" {
 
 variable "sa-key" {
   type    = string
-  default = "secrets/iti-final-hendawy-647b192c2df1.json"
+  default = "iti-final-hendawy-647b192c2df1.json"
 }
 
 variable "region2" {
