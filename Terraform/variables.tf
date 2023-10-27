@@ -15,7 +15,7 @@ variable "zone" {
 
 variable "sa-key" {
   type    = string
-  default = "/var/lib/jenkins/workspace/Pipeline1-Terraform-Infrastructure-Apply@2/Secrets/iti-final-hendawy-647b192c2df1.json"
+  default = "../Secrets/iti-final-hendawy-647b192c2df1.json"
 }
 
 variable "region2" {

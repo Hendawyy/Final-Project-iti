@@ -34,7 +34,7 @@ override.tf.json
 terraform.rc
 .terraform.lock.hcl
 
-secrets/
+Secrets/
 Kubernetes/
 Jenkins-Pipelines/
 Scripts/local_script.sh
