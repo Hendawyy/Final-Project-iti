@@ -32,3 +32,9 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
+.terraform.lock.hcl
+
+secrets/
+Kubernetes/
+Jenkins-Pipelines/
+Scripts/local_script.sh
