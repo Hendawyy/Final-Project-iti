@@ -26,5 +26,5 @@ variable "zone2" {
 
 variable "sa-key" {
   type        = string
-  description = "/secrets/iti-final-hendawy-647b192c2df1.json"
+  description = "secrets/iti-final-hendawy-647b192c2df1.json"
 }
