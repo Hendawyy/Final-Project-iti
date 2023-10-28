@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs
+  namespace: node
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nodejs
+  template:
+    metadata:
+      labels:
+        app: nodejs
+    spec:
+      containers:
+      - name: nodejs
+        image: us-east1-docker.pkg.dev/hendawy-iti-gcp/my-images/node-app:v1
+        ports:
+        - name: http
+          containerPort: 27017
+        env:
+        - name: MONGODB_HOSTNAME
+          value: mongodb-0.mongodb-headless.mongo
+        - name: MONGODB_PORT
+          value: "27017"
+        - name: MONGODB_DATABASE
+          value: inventory
+        - name: MONGODB_USERNAME
+          value: Hendawy
+        - name: MONGODB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: creds
+              key: db-password
+        resources:
+          limits:
+            cpu: 200m
+            memory: 256Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
