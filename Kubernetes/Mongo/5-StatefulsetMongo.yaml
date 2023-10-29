@@ -37,7 +37,7 @@ spec:
         sysctls: []
       containers:
       - name: mongodb
-        image: us-east1-docker.pkg.dev/hendawy-iti-gcp/my-images/mongodb:v1
+        image: us-east1-docker.pkg.dev/final-project-iti-hendawyy/my-images/mongodb:v1
         imagePullPolicy: IfNotPresent
         securityContext:
           runAsNonRoot: true
