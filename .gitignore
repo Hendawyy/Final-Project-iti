@@ -35,6 +35,4 @@ terraform.rc
 .terraform.lock.hcl
 
 Secrets/
-Screenshots/
-Jenkins-Pipelines/
 Scripts/local_script.sh

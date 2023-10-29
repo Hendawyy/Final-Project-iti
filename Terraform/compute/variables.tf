@@ -21,22 +21,6 @@ variable "sa-key" {
 variable "network_name" {
   type = string
 }
-
-variable "google_compute_subnet" {
-}
-
-variable "google_compute_subnet2" {
-}
-
-variable "sa_1_email" {
-}
-
-variable "K8S_email" {
-}
-
-variable "sa_1_key" {
-
-}
 variable "region2" {
   type    = string
   default = "us-east1"
@@ -51,6 +35,10 @@ variable "startup_script" {
   default = "../Scripts/Startupscript.sh"
 }
 
-variable "vm_subnet2_cidr" {
-
-}
+variable "google_compute_subnet" {}
+variable "google_compute_subnet2" {}
+variable "sa_1_email" {}
+variable "K8S_email" {}
+variable "sa_1_key" {}
+variable "vm_subnet2_cidr" {}
+variable "sa_1-email" {}

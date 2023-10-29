@@ -11,3 +11,7 @@ output "K8S_email" {
 output "sa_1_key" {
   value = google_service_account_key.sa_1_key
 }
+
+output "sa_1-email" {
+  value = google_service_account.sa_1.email
+}

@@ -21,5 +21,11 @@ resource "google_compute_instance" "private_vm" {
 
   metadata_startup_script = file(var.startup_script)
 
+  service_account {
+    email  = var.sa_1-email
+    scopes = ["cloud-platform"]
+  }
+
+
   tags = ["iap-allow-ssh"]
 }
