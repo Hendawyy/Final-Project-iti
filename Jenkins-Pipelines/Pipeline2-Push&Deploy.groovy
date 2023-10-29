@@ -73,11 +73,13 @@ pipeline {
                         hostname -i
                         gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
                         hostname -i
-                        kubectl get ns
                         pwd
+                        ls
                         git clone https://github.com/Hendawyy/Final-Project-iti
                         cd Final-Project-iti
                         ls
+                        kubectl apply -f Kubernetes/1-Roles/
+                        kubectl get ns
                         kubectl apply -f Kubernetes/Mongo/
                         sleep 45
                         kubectl apply -f /Kubernetes/App/
