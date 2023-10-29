@@ -21,6 +21,7 @@ module "compute" {
   K8S_email              = module.IAM.K8S_email
   sa_1_key               = module.IAM.sa_1_key
   vm_subnet2_cidr        = module.network.vm_subnet2_cidr
+  sa_1-email             = module.network.sa_1-email
 }
 
 module "IAM" {
