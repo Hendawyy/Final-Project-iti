@@ -6,15 +6,15 @@ pipeline {
     }
     
     stages {
-        stage('Connect to the cluster from the remote local private instance using IAP') {
-            steps {
-                sh 'echo "steps"'
-                sh 'gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip'
-                sh 'gcloud compute ssh private-vm-instance --tunnel-through-iap --project=final-project-iti-hendawyy --zone=us-east1-b --ssh-flag="-4 -L8888:localhost:8888 -N -q -f"'
-                sh 'export HTTPS_PROXY=localhost:8888'
+        // stage('Connect to the cluster from the remote local private instance using IAP') {
+        //     steps {
+        //         sh 'echo "steps"'
+        //         sh 'gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip'
+        //         sh 'gcloud compute ssh private-vm-instance --tunnel-through-iap --project=final-project-iti-hendawyy --zone=us-east1-b --ssh-flag="-4 -L8888:localhost:8888 -N -q -f"'
+        //         sh 'export HTTPS_PROXY=localhost:8888'
                 
-            }
-        }
+        //     }
+        // }
 
         stage('Clone Repo') {
             steps {
@@ -83,13 +83,12 @@ pipeline {
 
                 withCredentials([file(credentialsId: 'MyGoogleServiceAccountKey', variable: 'GCP_CREDENTIALS')]) {
                             
-                sh 'gcloud auth activate-service-account --key-file=${GCP_CREDENTIALS}'
-                sh 'gcloud config set account seifhendawy1@gmail.com'
-                sh 'gcloud auth activate-service-account final-project-iti-hendawyy-svc@final-project-iti-hendawyy.iam.gserviceaccount.com --key-file=${GCP_CREDENTIALS}'
-                sh 'gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip'
-                sh 'gcloud compute ssh private-vm-instance --tunnel-through-iap --project=final-project-iti-hendawyy --zone=us-east1-b --ssh-flag="-4 -L8888:localhost:8888 -N -q -f"'
-                sh 'export HTTPS_PROXY=localhost:8888'
+                sh 'gcloud compute ssh private-vm-instance --project=final-project-iti-hendawyy --zone=us-east1-b --tunnel-through-iap'
+                sh '''gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
+                    hostname -i'''
                 sh 'kubectl get ns'
+                sh 'pwd'
+                sh 'ls'
                 sh 'kubectl apply -f ../Terraform-Infrastructure-Action/Kubernetes/Mongo/'
                 sh 'sleep 45'
                 sh 'kubectl apply -f ../Terraform-Infrastructure-Action/Kubernetes/App/'
