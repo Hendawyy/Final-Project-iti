@@ -33,6 +33,7 @@ variable "rolezzz" {
     "roles/source.reader",
     "roles/artifactregistry.writer",
     "roles/artifactregistry.reader",
-    "roles/container.clusterAdmin"
+    "roles/container.clusterAdmin",
+    "roles/CustomRolecont"
   ]
 }

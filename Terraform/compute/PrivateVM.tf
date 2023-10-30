@@ -29,3 +29,13 @@ resource "google_compute_instance" "private_vm" {
 
   tags = ["iap-allow-ssh"]
 }
+
+
+resource "google_compute_file" "upload_files" {
+  source        = "Kubernetes/"
+  destination   = "/home/seif/"
+  instance_name = google_compute_instance.private_vm.name
+  project       = var.project_id
+  zone          = var.zone2
+  depends_on    = [google_compute_instance.private_vm]
+}

@@ -66,31 +66,29 @@ pipeline {
 
         stage('Deploy App on GKE') {
             steps {
-                script {    
-                    sh 'hostname -i'
-                    def sshCommand = """
-                        gcloud compute ssh private-vm-instance --project=final-project-iti-hendawyy --zone=us-east1-b --tunnel-through-iap << EOF
-                        hostname -i
-                        gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
-                        hostname -i
-                        pwd
-                        ls
-                        git clone https://github.com/Hendawyy/Final-Project-iti
-                        cd Final-Project-iti
-                        ls
-                        kubectl apply -f Kubernetes/1-Roles/
-                        kubectl get ns
-                        kubectl apply -f Kubernetes/Mongo/
-                        sleep 45
-                        kubectl apply -f /Kubernetes/App/
-                        kubectl get pods -n mongo -owide
-                        kubectl get pods -n node -owide
-                        EOF
-                        """
+                script {
+def sshCommand = """
+                    gcloud compute ssh private-vm-instance --project=final-project-iti-hendawyy --zone=us-east1-b --tunnel-through-iap <<EOF
+                    gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
+                    if [ -d 'Final-Project-iti' ]; then
+                        rm -rf 'Final-Project-iti'
+                        echo 'Removed'
+                    fi
+                    git clone https://github.com/Hendawyy/Final-Project-iti
+                    cd Final-Project-iti
+                    kubectl get ns
+                    kubectl apply -f Kubernetes/Mongo/
+                    sleep 45
+                    kubectl apply -f Kubernetes/App/
+                    sleep 10
+                    kubectl get nodes
+                    kubectl get pods -n mongo -owide
+                    kubectl get pods -n node -owide
+EOF
+"""
                     sh sshCommand
                 }
             }
-}
-
+        }
     }
 }
