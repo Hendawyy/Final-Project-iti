@@ -120,13 +120,13 @@ To utilize GCP within Terraform, follow these steps:
         - Then save the job.
         - Chooe build with paramaters.
         - Don't buld just yet.
-     - 1.19. Then Create a New Jenkins Pipeline Job:  
-          - Go to your Dashboard.
-          - Click on "New Item" to create a new Jenkins job.
-          - Enter a name for your job (e.g., "Deploy-and-run-Pipeline").
-          - Choose "Pipeline" as the job type and click "OK".
-       >[!NOTE]
-       > This pipeline gets the Kubernetes file that deploys the web app from your project directory and sends it to the VM this is all done in the pipeline code however you need to change the path of the Kubernetes directory to ypur path and the anme of the VM and user.
+   - 1.19. Then Create a New Jenkins Pipeline Job:  
+        - Go to your Dashboard.
+        - Click on "New Item" to create a new Jenkins job.
+        - Enter a name for your job (e.g., "Deploy-and-run-Pipeline").
+        - Choose "Pipeline" as the job type and click "OK".
+   >[!NOTE]
+    > This pipeline gets the Kubernetes file that deploys the web app from your project directory and sends it to the VM this is all done in the pipeline code however you need to change the path of the Kubernetes directory to ypur path and the anme of the VM and user.
    
      - 1.20. Configure the Pipeline:
           - In the job configuration page:
