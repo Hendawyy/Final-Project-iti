@@ -128,14 +128,14 @@ To utilize GCP within Terraform, follow these steps:
    >[!NOTE]
     > This pipeline gets the Kubernetes file that deploys the web app from your project directory and sends it to the VM this is all done in the pipeline code however you need to change the path of the Kubernetes directory to ypur path and the anme of the VM and user.
    
-     - 1.20. Configure the Pipeline:
-          - In the job configuration page:
-          - Scroll down to the "Pipeline" section and choose the "Pipeline script" option.
-          - Then Add the code in the ```Jenkins-Pipelines/Pipeline2-Push&Deploy.groovy``` file.
-          - Then save the job.
-          - Now go to the "TerraformPipeline" and build with parameter.
-          - Choose the desired action ```Apply``` or ```Destroy``` and then build.
-          - Check your GCP account to ensure all instances have been created successfully.
+   - 1.20. Configure the Pipeline:
+        - In the job configuration page:
+        - Scroll down to the "Pipeline" section and choose the "Pipeline script" option.
+        - Then Add the code in the ```Jenkins-Pipelines/Pipeline2-Push&Deploy.groovy``` file.
+        - Then save the job.
+        - Now go to the "TerraformPipeline" and build with parameter.
+        - Choose the desired action ```Apply``` or ```Destroy``` and then build.
+        - Check your GCP account to ensure all instances have been created successfully.
     
 
 ---- 🌟 ----
