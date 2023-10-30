@@ -29,8 +29,8 @@ resource "google_compute_instance" "private_vm" {
   tags = ["iap-allow-ssh"]
 
   provisioner "file" {
-    source      = "../Kubernetes/"
-    destination = "/home/seif/Kubernetes/"
+    source      = "../Kubernetes"
+    destination = "/home/seif"
   }
 
 
