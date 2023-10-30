@@ -34,6 +34,6 @@ variable "rolezzz" {
     "roles/artifactregistry.writer",
     "roles/artifactregistry.reader",
     "roles/container.clusterAdmin",
-    "roles/CustomRolecont"
+    "projects/final-project-iti-hendawyy/roles/CustomRolecont"
   ]
 }
