@@ -4,11 +4,13 @@ This project showcases the implementation of Continuous Integration and Continuo
 
 ## Project Components  🛠️
 
-- Terraform Infrastructure: Develop and utilize custom Terraform modules to construct the necessary infrastructure on Google Cloud Platform, including IAM setup, network configuration (VPC, subnets, firewall rules, NAT), compute resources (private VM, GKE standard cluster spanning three zones), and storage through the Artifact Registry.
+### This project encompasses the following key components:
 
-- Infrastructure Pipeline: The first Jenkins pipeline, responsible for managing GCP infrastructure as code. This pipeline offers two options: "apply" and "destroy," which utilize Terraform to create or tear down the infrastructure components.
+-Terraform Infrastructure: We leverage custom Terraform modules to create and manage the necessary infrastructure on Google Cloud Platform. This includes setting up Identity and Access Management (IAM), network configuration (Virtual Private Cloud, subnets, firewall rules, NAT), compute resources (private VM, GKE standard cluster across three zones), and storage through the Artifact Registry.
 
-- Application Pipeline: The second Jenkins pipeline is the CI/CD pipeline responsible for building, containerizing, and deploying the Node.js web application and MongoDB replica set on GKE.
+-Infrastructure Pipeline: The first Jenkins pipeline is dedicated to managing GCP infrastructure as code. It provides two pivotal options: "apply" and "destroy," using Terraform to create or dismantle the infrastructure components.
+
+-Application Pipeline: The second Jenkins pipeline is our CI/CD pipeline, responsible for building, containerizing, and deploying the Node.js web application and MongoDB replica set on GKE.
 
 ## 🚀 Getting Started
 
@@ -37,8 +39,8 @@ Before you begin, ensure you have the following installed:
   ```
 4. You will be prompted to enter the project ID.
 > [!NOTE]
-> you can get the project id by going to the GCP console and in the dashboard you will find the project id
-> The chosen project will be the default project for all the gcloud commands till changed
+>If you're unsure where to find your project ID, visit the GCP console dashboard to locate this essential piece of information.
+> Your chosen project will serve as the default project for all gcloud commands until it's changed.
 
 ---- 🌟 ----
 
@@ -148,27 +150,28 @@ To utilize GCP within Terraform, follow these steps:
 ---- 🌟 ----
 
 ### 🌐  Access the GKE Cluster 
+After applying the Terraform configuration, you'll want to access the private VM instance through Identity-Aware Proxy (IAP) and check the progress of the startup script. Follow these steps:
 
-1. After applying the Terraform configuration, you'll want to access the private VM instance through Identity-Aware Proxy (IAP). Use the following command:
+1. Access the private VM instance using the following command, replacing <project-name> and <vm-zone> with your specific project and zone information:
    ```
-   gcloud compute ssh private-vm-instance --project=<project-name> --zone=<vm-zone> --tunnel-through-iap
+   gcloud compute ssh <instance-name> --project=<project-name> --zone=<vm-zone> --tunnel-through-iap
    ```
-2. Once you've accessed the machine, check the progress of the startup script by viewing the log file:
+2. Once connected, check the progress of the startup script by viewing the log file:
    ```
-   cat /var/log/syslog
+   cat /var/log/syslog | grep startup-script
    ```
-3. Obtain the cluster credentials using the following command:
+3. Obtain the cluster credentials using the following command, replacing <cluster-name>, <cluster-zone>, and <project-name> with your specific cluster and project details:
    ```
    gcloud container clusters get-credentials <cluster-name> --zone <cluster-zone> --project <project-name> --internal-ip
    ```
- After The Pipeline is build you will see the runing pods you can get the service ip in order to access the Web applicaton you can do that by doing the followinf:
+4. After building the Jenkins pipeline, you will see running pods. To access the web application, obtain the service IP:
    ```
    kubectl get svc -n node
    ```
-8. Copy the External-IP and paste it into your browser to access the web application. This app displays the number of visits, which increases every time you reload the page.
-9. this app has ```visists:number of visits``` every time you reload the ```number of visits``` will increase
-10. since in Kubernetes (K8s), "stateful" means  that each pod in a stateful application has persistent storage to maintain its state. If the database fails for any reason, you can still access the data.
-11. You can check this by destroying mongodb-0 and then reloading the browser. The ```number of visits``` will remain unchanged and increase from the last visit.
+5. Copy the External-IP and paste it into your browser to access the web application. The web app displays the number of visits, which increases every time you reload the page.
+6. this app has ```visists:number of visits``` every time you reload the ```number of visits``` will increase
+7. since in Kubernetes (K8s), "stateful" means  that each pod in a stateful application has persistent storage to maintain its state. If the database fails for any reason, you can still access the data.
+8. You can check this by destroying mongodb-0 and then reloading the browser. The ```number of visits``` will remain unchanged and increase from the last visit.
    ```
    curl <EXTERNAL_IP>
    delete pods mongodb-0-n mongo
@@ -185,8 +188,9 @@ To clean up and delete all resources:
 kubectl delete ns mongo node
 
 ```
-- To destroy all the instances you will need to go to the first pipeline job "TerraformPipeline" and build with parameters and choose to destroy
-- During the destruction, you'll need to delete the disks used by the databases from the Google Cloud Console. Go to Compute Engine, select Disks, and press Delete for all disks. 
+- In order to destroy all the instances, navigate to the first pipeline job, "TerraformPipeline," and trigger it with parameters. 
+- Choose the "destroy" action, and during the destruction process, remember to delete the disks used by the databases from the Google Cloud Console.
+- You can find these disks under Compute Engine, where you can select and delete them. 
 
 ---- 🌟 ----
 
