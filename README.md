@@ -94,10 +94,9 @@ To utilize GCP within Terraform, follow these steps:
     - 1.12. Install to jenkins
     - 1.13. Access Jenkins Homepage [Jenkins](https://localhost:8080).
     - 1.14. Retrieve the Jenkins Admin Password:
-
-             ```
-              cat /var/jenkins_home/secrets/initialAdminPassword
-             ```
+      ```
+      cat /var/jenkins_home/secrets/initialAdminPassword
+      ```
    - 1.15. Enter the generated password from your terminal into your initial password on Jenkins and press "Install Suggested Plugins" and create the admin user.
    - 1.16. Inisde jenkins the first thing you need to do is to Configure Servica account Credentials
              - Go to manage jenkins
