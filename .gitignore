@@ -35,7 +35,6 @@ terraform.rc
 .terraform.lock.hcl
 
 Secrets/
-Scripts/local_script.sh
 
 Kubernetes/App/2-NodeSecrets.yaml
 Kubernetes/Mongo/2-MongoSecrets.yaml
