@@ -70,12 +70,8 @@ pipeline {
 def sshCommand = """
                     gcloud compute ssh private-vm-instance --project=final-project-iti-hendawyy --zone=us-east1-b --tunnel-through-iap <<EOF
                     gcloud container clusters get-credentials gcp-k8s --zone europe-west1-b --project final-project-iti-hendawyy --internal-ip
-                    if [ -d 'Final-Project-iti' ]; then
-                        rm -rf 'Final-Project-iti'
-                        echo 'Removed'
-                    fi
-                    git clone https://github.com/Hendawyy/Final-Project-iti
-                    cd Final-Project-iti
+                    tar -xzvf Kubernetes.tar.gz
+                    rm -rf Kubernetes.tar.gz
                     kubectl get ns
                     kubectl apply -f Kubernetes/Mongo/
                     sleep 45

@@ -50,6 +50,9 @@ pipeline {
                 script{
                     def tfaction = params.action
                         if (tfaction == 'Apply') {
+                            sh 'tar -czvf /tmp/Kubernetes.tar.gz -C /home/seif/Documents/Projects/Final_Project/Final-Project-iti/ Kubernetes'
+                            sh 'gcloud compute scp --project=final-project-iti-hendawyy --zone=us-east1-b /tmp/Kubernetes.tar.gz seif@private-vm-instance:/home/seif/Kubernetes.tar.gz --tunnel-through-iap'
+                            sh 'rm -rf /tmp/Kubernetes.tar.gz'
                             build job: 'Pipeline2-Push-and-Deploy'
                         } else if (tfaction == 'Destroy') {
                             sh 'echo "SUCCESS: All Resources Destroyed"'
