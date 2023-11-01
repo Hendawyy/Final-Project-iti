@@ -47,13 +47,6 @@ sudo apt-get install jenkins
 
 sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
 
-# Install and configure Tinyproxy
-sudo apt install tinyproxy -y
-sudo sh -c "echo 'Allow localhost' >> /etc/tinyproxy/tinyproxy.conf"
-
-# Restart Tinyproxy
-sudo service tinyproxy restart
-
 # Step 2: Save the service account key on the VM using wget
 wget --header="Metadata-Flavor: Google" -O svacckey.json http://metadata.google.internal/computeMetadata/v1/instance/attributes/sa-1-key
 
