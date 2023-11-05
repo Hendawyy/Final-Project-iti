@@ -54,7 +54,7 @@ pipeline {
                         } else if (tfaction == 'Destroy') {
                             sh 'echo "SUCCESS: All Resources Destroyed"'
                         } else {
-                            error("Invalid choice for 'action' parameter")
+                            error("Invalid choice for 'action' Parameter")
                         }
                 }
             }
