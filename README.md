@@ -12,6 +12,8 @@ This project showcases the implementation of Continuous Integration and Continuo
 
 -Application Pipeline: The second Jenkins pipeline is our CI/CD pipeline, responsible for building, containerizing, and deploying the Node.js web application and MongoDB replica set on GKE.
 
+![Requirements](./Req/Requirements.png)
+
 ## 🚀 Getting Started
 
 ### Prerequisites  🛠️
